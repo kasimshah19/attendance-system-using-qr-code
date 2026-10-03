@@ -112,12 +112,7 @@ export default function Layout({ children }) {
         />
       )}
 
-      <motion.aside
-        className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}
-        initial={{ x: -20, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-      >
+      <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="sidebar-logo" style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
           ScanShift
         </div>
@@ -150,7 +145,7 @@ export default function Layout({ children }) {
             </button>
           </div>
         </div>
-      </motion.aside>
+      </aside>
 
       <main className="main-content">
         {children}
