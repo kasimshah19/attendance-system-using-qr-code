@@ -6,7 +6,7 @@
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-A modern, fast, and secure QR-code based attendance tracking web application built for MZR Media. 
+A modern, fast, and secure QR-code based attendance tracking web application built for ScanShift Attendance System. 
 
 ---
 
