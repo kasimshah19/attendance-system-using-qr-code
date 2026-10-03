@@ -27,25 +27,6 @@ function fmtTime(ts) {
   return format(new Date(ts), 'hh:mm a')
 }
 
-// ── Geolocation Logic ──────────────────────────────────────────
-const OFFICE_LAT = parseFloat(import.meta.env.VITE_OFFICE_LAT || '21.3300') // Default: Dondaicha
-const OFFICE_LNG = parseFloat(import.meta.env.VITE_OFFICE_LNG || '74.5700')
-const ALLOWED_RADIUS = parseInt(import.meta.env.VITE_OFFICE_RADIUS || '100') // meters
-
-function getDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371e3; // Earth radius in metres
-  const φ1 = lat1 * Math.PI/180;
-  const φ2 = lat2 * Math.PI/180;
-  const Δφ = (lat2-lat1) * Math.PI/180;
-  const Δλ = (lon2-lon1) * Math.PI/180;
-
-  const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-            Math.cos(φ1) * Math.cos(φ2) *
-            Math.sin(Δλ/2) * Math.sin(Δλ/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c; // in metres
-}
-
 // ── Scan logic ─────────────────────────────────────────────────
 //
 //  LATE_GRACE_MINS       → from employee.late_grace_mins (flexible per employee)
@@ -344,45 +325,13 @@ export default function Scan() {
     }
   }
 
-  function verifyLocationAndExecute(actionCallback) {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser.")
-      return
-    }
-
-    setSubmitting(true)
-    setError('')
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        const distance = getDistance(OFFICE_LAT, OFFICE_LNG, latitude, longitude);
-        
-        if (distance <= ALLOWED_RADIUS) {
-          actionCallback();
-        } else {
-          setSubmitting(false)
-          setError(`You are ${Math.round(distance)} meters away. You must be inside the office to mark attendance.`);
-        }
-      },
-      (geoError) => {
-        setSubmitting(false)
-        console.error("Geo error:", geoError);
-        if (geoError.code === 1) {
-          setError("Please allow location access (GPS) to verify you are at the office.");
-        } else {
-          setError("Could not get your location. Please ensure GPS is enabled.");
-        }
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-    );
-  }
-
   async function handleCheckIn() {
     if (state === 'checkin_late' && !reason.trim()) {
       setError('Please provide a reason for being late.')
       return
     }
+    setError('')
+    setSubmitting(true)
 
     const isLate = state === 'checkin_late'
     const today = todayDate()
@@ -438,6 +387,8 @@ export default function Scan() {
       setError('Please provide a reason for early checkout.')
       return
     }
+    setError('')
+    setSubmitting(true)
 
     const isEarly = state === 'checkout_early'
     const now = nowTimestamp()
@@ -507,10 +458,10 @@ export default function Scan() {
             <button
               className="btn btn-primary btn-lg pulse"
               style={{ width: '100%', justifyContent: 'center', borderRadius: 10 }}
-              onClick={() => verifyLocationAndExecute(handleCheckIn)}
+              onClick={handleCheckIn}
               disabled={submitting}
             >
-              {submitting ? 'Verifying Location...' : '✓ Check In'}
+              {submitting ? 'Checking In...' : '✓ Check In'}
             </button>
           </div>
         )
@@ -547,10 +498,10 @@ export default function Scan() {
             <button
               className="btn btn-primary btn-lg"
               style={{ width: '100%', justifyContent: 'center', borderRadius: 10, background: 'var(--warning)', color: '#000' }}
-              onClick={() => verifyLocationAndExecute(handleCheckIn)}
+              onClick={handleCheckIn}
               disabled={submitting || !reason.trim()}
             >
-              {submitting ? 'Verifying Location...' : '⚠ Submit & Check In Late'}
+              {submitting ? 'Submitting...' : '⚠ Submit & Check In Late'}
             </button>
           </div>
         )
@@ -579,10 +530,10 @@ export default function Scan() {
             <button
               className="btn btn-primary btn-lg"
               style={{ width: '100%', justifyContent: 'center', borderRadius: 10 }}
-              onClick={() => verifyLocationAndExecute(handleCheckOut)}
+              onClick={handleCheckOut}
               disabled={submitting}
             >
-              {submitting ? 'Verifying Location...' : '→ Check Out'}
+              {submitting ? 'Checking Out...' : '→ Check Out'}
             </button>
           </div>
         )
@@ -623,10 +574,10 @@ export default function Scan() {
             <button
               className="btn btn-danger btn-lg"
               style={{ width: '100%', justifyContent: 'center', borderRadius: 10 }}
-              onClick={() => verifyLocationAndExecute(handleCheckOut)}
+              onClick={handleCheckOut}
               disabled={submitting || !reason.trim()}
             >
-              {submitting ? 'Verifying Location...' : '⚡ Submit Early Checkout'}
+              {submitting ? 'Submitting...' : '⚡ Submit Early Checkout'}
             </button>
           </div>
         )
