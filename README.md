@@ -144,4 +144,4 @@ Connect with me:
 
 ---
 
-&copy; 2026 Al-Hayat Diagnostic Lab — All rights reserved
+&copy; 2026 ScanShift Attendance System — All rights reserved
