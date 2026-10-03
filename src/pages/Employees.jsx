@@ -73,7 +73,7 @@ function EmployeeModal({ employee, onClose, onSaved }) {
               onChange={e => setName(e.target.value)} required autoFocus />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div className="form-row-2">
             <div className="form-group">
               <label className="form-label">Shift Start</label>
               <input type="time" className="form-input" value={startTime}

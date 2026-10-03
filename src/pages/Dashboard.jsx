@@ -83,10 +83,9 @@ function LateReasonPopup({ record, onClose }) {
           </div>
 
           {/* Time info */}
-          <div style={{
+          <div className="form-row-2" style={{
             background: 'var(--bg-elevated)', border: '1px solid var(--border)',
-            borderRadius: 10, padding: '14px 18px', marginBottom: 18,
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12
+            borderRadius: 10, padding: '14px 18px', marginBottom: 18
           }}>
             <div>
               <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
