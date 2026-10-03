@@ -16,19 +16,23 @@ A modern, fast, and secure QR-code based attendance tracking web application bui
 
 ## 🎯 The Problem
 
-Traditional attendance tracking systems often rely on manual entry, paper logs, or outdated spreadsheet sharing. These methods are:
-- **Time-Consuming:** Causes bottlenecks at entry points during peak hours.
-- **Error-Prone & Inaccurate:** Highly susceptible to human error, missed logs, or buddy punching.
-- **Lacking Real-Time Data:** Management cannot see who is currently present without manually tallying records.
-- **High Maintenance:** Difficult to organize, backup, and export for payroll processing.
+Traditional attendance tracking systems often rely on manual entry, paper logs, fingerprint scanners, or outdated spreadsheet sharing. These legacy methods are riddled with issues:
+- **Time-Consuming & Intrusive:** Long queues at physical biometric devices cause bottlenecks at entry points during peak hours.
+- **App Fatigue & Privacy Concerns:** Many modern systems force employees to download bulky mobile applications, register for accounts, and remember passwords, which leads to friction and privacy concerns.
+- **Error-Prone & Inaccurate:** Manual registers are highly susceptible to human error, illegible handwriting, missed logs, or buddy punching.
+- **Lacking Real-Time Data:** Management cannot see who is currently present without manually tallying records or downloading CSVs from legacy devices.
+- **High Maintenance:** Physical devices break down, require constant maintenance, and are difficult to organize or export data for payroll processing.
 
 ## 💡 The Solution
 
-**ScanShift** solves this by providing a seamless, digital-first approach to attendance tracking using QR codes and real-time cloud synchronization.
-- **Instant Check-in/Check-out:** Users can log their attendance in seconds by scanning a dynamic QR code.
-- **Real-Time Dashboard:** Powered by **Supabase**, administrators can view attendance logs as they happen.
-- **Secure & Reliable:** Authentication and database storage ensure that attendance records are immutable and accurate.
-- **Beautiful & Intuitive UI:** Smooth animations with **Framer Motion** and a responsive interface make the app a joy to use on any device.
+**ScanShift** solves these challenges by providing a seamless, digital-first approach to attendance tracking that completely removes the friction for employees while giving managers unprecedented real-time control.
+
+- **App-Less, Zero-Login Employee Workflow:** Employees do not need to download any apps, sign up for accounts, or remember passwords. They are simply issued a unique, securely encrypted QR code (printed on an ID card or shared via WhatsApp).
+- **Instant Check-in/Check-out:** To mark attendance, employees simply open their phone's native camera, scan their unique QR code, and tap a button on the secure web page that opens. The entire process takes less than 3 seconds.
+- **Smart Grace Periods & Shift Tracking:** The system automatically identifies if an employee is `On Time` or `Late` based on their specific assigned shift timings and a configurable grace period. Early check-outs and late arrivals require a mandatory reason submission.
+- **Real-Time Manager Dashboard:** Powered by **Supabase**, administrators can view attendance logs, active presence, and late arrivals exactly as they happen. No refreshing required.
+- **Secure & Reliable:** Authentication and database RLS (Row Level Security) policies ensure that attendance records are immutable and accurate.
+- **Beautiful & Intuitive UI:** Smooth animations with **Framer Motion** and a highly responsive, premium dark-mode interface make the portal a joy to use on both mobile and desktop.
 
 ---
 
