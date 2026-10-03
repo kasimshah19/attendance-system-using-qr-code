@@ -28,8 +28,8 @@ function fmtTime(ts) {
 }
 
 // ── Geolocation Logic ──────────────────────────────────────────
-const OFFICE_LAT = parseFloat(import.meta.env.VITE_OFFICE_LAT || '28.6139') // Default: New Delhi
-const OFFICE_LNG = parseFloat(import.meta.env.VITE_OFFICE_LNG || '77.2090')
+const OFFICE_LAT = parseFloat(import.meta.env.VITE_OFFICE_LAT || '21.3300') // Default: Dondaicha
+const OFFICE_LNG = parseFloat(import.meta.env.VITE_OFFICE_LNG || '74.5700')
 const ALLOWED_RADIUS = parseInt(import.meta.env.VITE_OFFICE_RADIUS || '100') // meters
 
 function getDistance(lat1, lon1, lat2, lon2) {
