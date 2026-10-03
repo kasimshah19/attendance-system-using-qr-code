@@ -9,6 +9,7 @@ Use the following credentials to log in to the admin/manager portal:
 | Role | Email Address | Password |
 | :--- | :--- | :--- |
 | **Admin** | `kasimshah998@gmail.com` | `Kasim@2003` |
+| **Manager** | `manager@scanshift.com` | `[Aapne jo rakha tha]` |
 
 ---
 
