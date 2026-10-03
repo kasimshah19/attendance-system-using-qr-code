@@ -1,77 +1,147 @@
-# ScanShift — Attendance Portal
+# ScanShift Attendance System 📱✨
 
-A dark-themed, QR-based employee attendance management system built with **React + Vite + Supabase**.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-## Features
+A modern, fast, and secure QR-code based attendance tracking web application built for MZR Media. 
 
-- 🔐 **Admin & Manager login** (Supabase Auth)
-- 👥 **Employee management** — Add, edit, delete, view QR
-- 📱 **QR Code generation** — Print or download per employee
-- ⏱ **Smart check-in logic** — On-time / Late (with reason)
-- 🚪 **Smart check-out logic** — Normal / Early (with reason)
-- 📅 **Day & Month views** — Filter and export attendance CSV
-- 🚫 **2-hour checkout lock** — Prevents accidental re-scans
-- 📊 **Dashboard** — Live stats, today's activity feed
+---
 
-## Business Rules
+## 🎯 The Problem
 
-| Rule | Setting |
-|------|---------|
-| Late threshold | 30 mins after shift start |
-| Checkout lock | 2 hours after check-in |
-| Free checkout window | Within 30 mins of shift end |
-| QR code validity | Permanent (until employee deleted) |
+Traditional attendance tracking systems often rely on manual entry, paper logs, or outdated spreadsheet sharing. These methods are:
+- **Time-Consuming:** Causes bottlenecks at entry points during peak hours.
+- **Error-Prone & Inaccurate:** Highly susceptible to human error, missed logs, or buddy punching.
+- **Lacking Real-Time Data:** Management cannot see who is currently present without manually tallying records.
+- **High Maintenance:** Difficult to organize, backup, and export for payroll processing.
 
-## Tech Stack
+## 💡 The Solution
 
-- **Frontend**: React 18, Vite 5, Framer Motion, React Router v6
-- **QR Codes**: qrcode.react
-- **Dates**: date-fns
-- **Backend**: Supabase (PostgreSQL + Auth + RLS)
+**ScanShift** solves this by providing a seamless, digital-first approach to attendance tracking using QR codes and real-time cloud synchronization.
+- **Instant Check-in/Check-out:** Users can log their attendance in seconds by scanning a dynamic QR code.
+- **Real-Time Dashboard:** Powered by **Supabase**, administrators can view attendance logs as they happen.
+- **Secure & Reliable:** Authentication and database storage ensure that attendance records are immutable and accurate.
+- **Beautiful & Intuitive UI:** Smooth animations with **Framer Motion** and a responsive interface make the app a joy to use on any device.
 
-## Quick Start
+---
 
+## 🚀 Features
+
+- **QR Code Generation & Scanning:** Dynamic QR codes for secure, location-based attendance marking.
+- **Real-Time Sync:** Instant updates across all connected clients using Supabase real-time subscriptions.
+- **Secure Authentication:** Role-based access control ensuring data privacy.
+- **Smooth Animations:** Fluid transitions and modal interactions using Framer Motion.
+- **Modern Tech Stack:** Blazing fast development and production builds thanks to Vite and React.
+
+---
+
+## 🏗️ Architecture & Workflow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant App as React Frontend (Vite)
+    participant DB as Supabase (PostgreSQL & Auth)
+    participant Admin as Admin Dashboard
+
+    User->>App: Scans QR Code / Clicks Check-in
+    App->>DB: Sends Auth Token & Attendance Data
+    DB-->>App: Validation Success
+    DB->>DB: Store record in database
+    DB-->>Admin: Broadcast real-time update
+    Admin->>Admin: Update UI instantly
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework:** React 18
+- **Build Tool:** Vite
+- **Backend & Database:** Supabase (PostgreSQL, Auth, Realtime)
+- **Routing:** React Router v6
+- **Animations:** Framer Motion
+- **Date Formatting:** date-fns
+- **QR Code Integration:** qrcode.react
+
+---
+
+## ⚙️ Local Development Setup
+
+Follow these steps to run the project locally on your machine.
+
+### Prerequisites
+- [Node.js](https://nodejs.org/en/) (v16 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- A [Supabase](https://supabase.com/) account and project.
+
+### 1. Clone the repository
 ```bash
-# 1. Install dependencies
+git clone https://github.com/your-username/mzrmedia-attendance.git
+cd mzrmedia-attendance
+```
+
+### 2. Install dependencies
+```bash
 npm install
+```
 
-# 2. Set up environment
-cp .env.example .env
-# Fill in your Supabase URL and anon key
+### 3. Environment Variables
+Create a `.env` file in the root directory and add your Supabase credentials:
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-# 3. Set up Supabase (see SUPABASE_SETUP.md)
-
-# 4. Run development server
+### 4. Start the Development Server
+```bash
 npm run dev
 ```
+The application will be available at `http://localhost:5173`.
 
-See **SUPABASE_SETUP.md** for the complete backend setup guide.
+---
 
-## Project Structure
+## 📁 Project Structure
 
-```
-src/
-├── context/
-│   └── AuthContext.jsx     # Auth state & signIn/signOut
-├── components/
-│   ├── Layout.jsx          # Sidebar + main shell
-│   ├── ProtectedRoute.jsx  # Auth guard
-│   └── QRModal.jsx         # QR viewer + print/download
-├── pages/
-│   ├── Login.jsx           # Admin/Manager sign-in
-│   ├── Dashboard.jsx       # Stats + today's activity
-│   ├── Employees.jsx       # CRUD + QR generation
-│   ├── Attendance.jsx      # Records table (day/month)
-│   └── Scan.jsx            # Public QR scan page
-└── lib/
-    └── supabase.js         # Supabase client
+```text
+├── src/
+│   ├── components/      # Reusable UI components (e.g., QRModal)
+│   ├── pages/           # Route components (e.g., Login, Dashboard)
+│   ├── App.jsx          # Main application component and routing
+│   └── main.jsx         # React application entry point
+├── public/              # Static assets
+├── index.html           # HTML template
+├── package.json         # Project metadata and dependencies
+└── vite.config.js       # Vite configuration
 ```
 
-## Accounts
+---
 
-| Name | Role |
-|------|------|
-| Zuhair Raza | Admin |
-| Hanzala Ajmeri | Manager |
+## 🤝 Contributing
 
-Set up via Supabase Auth dashboard — see `SUPABASE_SETUP.md` Step 5.
+Contributions, issues, and feature requests are welcome! 
+Feel free to check the [issues page](https://github.com/your-username/mzrmedia-attendance/issues).
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Kasim Shah**
+
+Connect with me:
+- **Portfolio:** [kasim-portfolio-umber.vercel.app](https://kasim-portfolio-umber.vercel.app/)
+- **LinkedIn:** [Kasim Shah](https://www.linkedin.com/in/kasim-shah-176175340/)
+- **GitHub:** [@kasimshah19](https://github.com/kasimshah19)
+
+---
+
+&copy; 2026 Al-Hayat Diagnostic Lab — All rights reserved
