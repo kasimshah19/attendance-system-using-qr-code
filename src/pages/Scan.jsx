@@ -338,9 +338,11 @@ export default function Scan() {
     const now = nowTimestamp()
 
     let newRecord
+    let fetchError
+
     if (record?.id) {
       // update existing partial record
-      const { data } = await supabase
+      const { data, error: err } = await supabase
         .from('attendance')
         .update({
           check_in_time: now,
@@ -351,8 +353,9 @@ export default function Scan() {
         .select()
         .single()
       newRecord = data
+      fetchError = err
     } else {
-      const { data } = await supabase
+      const { data, error: err } = await supabase
         .from('attendance')
         .insert({
           employee_id: employee.id,
@@ -364,6 +367,14 @@ export default function Scan() {
         .select()
         .single()
       newRecord = data
+      fetchError = err
+    }
+
+    if (fetchError) {
+      console.error('Check-in error:', fetchError)
+      alert(`Check-in failed: ${fetchError.message}\n(Make sure attendance table has all columns including check_in_status and late_reason)`)
+      setSubmitting(false)
+      return
     }
 
     setRecord(newRecord)
