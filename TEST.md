@@ -48,3 +48,24 @@ Employees **do not** have login access to the dashboard, nor do they need to dow
 - **Daily Scanning:** To mark attendance, the employee simply opens their standard smartphone camera (or any generic QR scanner) and scans their assigned QR code.
 - **One-Tap Attendance:** Scanning the code opens a secure web link tailored specifically for that employee. The system automatically identifies the employee via the secret token in the URL. They just tap "Check In" or "Check Out", and their attendance is instantly logged on the manager's live dashboard.
 - **Rules Applied:** The system automatically calculates if they are `on_time`, `late`, or checking out `early` based on their assigned shift timings and grace period.
+
+---
+
+## 🌍 Geolocation Security (Fake Attendance Prevention)
+
+### The Loophole
+Because the system is app-less and relies entirely on scanning a printed QR code containing a secure token, an employee could theoretically take a picture of their ID card and scan it from home or while commuting to mark "fake attendance."
+
+### The Solution: GPS Map Restriction
+To prevent off-site check-ins, we implemented **Geolocation Tracking** leveraging the HTML5 Geolocation API and the **Haversine formula**.
+
+#### How it works:
+1. **Coordinates & Radius:** The system administrator defines the exact office GPS coordinates (`VITE_OFFICE_LAT`, `VITE_OFFICE_LNG`) and an allowable scanning radius (`VITE_OFFICE_RADIUS`, e.g., 100 meters) inside the environment variables (`.env`).
+2. **Permission Request:** When an employee scans their code and taps "Check In", their phone prompts for Location Permission.
+3. **Distance Calculation:** If allowed, the web app captures their current GPS coordinates and calculates the exact distance between the employee and the office using the mathematical Haversine formula (which accounts for the Earth's curvature).
+4. **Validation:** 
+   - If the distance is **within** the allowed 100-meter radius, attendance is successfully marked.
+   - If the distance is **outside** the radius, check-in is blocked with an error: *"You are [X] meters away. You must be inside the office."*
+   - If GPS permission is denied, check-in is completely blocked.
+
+This effectively forces physical presence at the office without needing a complex biometric device.
