@@ -76,7 +76,7 @@ export default function Attendance() {
     const blob = new Blob([csv], { type: 'text/csv' })
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
-    link.download = `MZR-Attendance-${mode === 'day' ? selectedDate : selectedMonth}.csv`
+    link.download = `ScanShift-Attendance-${mode === 'day' ? selectedDate : selectedMonth}.csv`
     link.click()
   }
 

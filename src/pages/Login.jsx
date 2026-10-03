@@ -51,8 +51,8 @@ export default function Login() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: 'easeOut' }}
       >
-        <div className="login-logo">
-          <img src={LOGO} alt="MZR Media" />
+        <div className="login-logo" style={{ fontSize: '32px', fontWeight: 'bold', color: 'white' }}>
+          ScanShift
         </div>
 
         <h1 className="login-headline">Attendance Portal</h1>
@@ -66,7 +66,7 @@ export default function Login() {
             <input
               type="email"
               className="form-input"
-              placeholder="you@mzrmedia.com"
+              placeholder="you@scanshift.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
@@ -110,7 +110,7 @@ export default function Login() {
         </form>
 
         <p style={{ textAlign: 'center', marginTop: 24, fontSize: 12, color: 'var(--text-muted)' }}>
-          MZR Media · Attendance Management System
+          ScanShift · Attendance Management System
         </p>
       </motion.div>
     </div>

@@ -49,7 +49,7 @@ export default function QRModal({ employee, onClose }) {
         </head>
         <body>
           <div class="card">
-            <div class="logo"><img src="${LOGO}" alt="MZR Media" /></div>
+            <div class="logo" style="font-size: 24px; font-weight: bold; color: black;">ScanShift</div>
             <div class="qr-wrap">
               <img src="${qrApiBase}&size=220x220&data=${encoded}" width="220" height="220" />
             </div>

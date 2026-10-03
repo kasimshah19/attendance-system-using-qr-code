@@ -1,5 +1,5 @@
 -- ============================================================
--- MZR MEDIA ATTENDANCE PORTAL - SUPABASE SCHEMA
+-- ScanShift ATTENDANCE PORTAL - SUPABASE SCHEMA
 -- Run this entire file in Supabase SQL Editor
 -- ============================================================
 
@@ -170,26 +170,26 @@ CREATE POLICY "Anyone can read active employees"
 -- ============================================================
 -- SEED DATA: Admin and Manager users
 -- Step 1: Create users in Supabase Auth Dashboard (Authentication > Users)
---   Admin:   email: zuhair@mzrmedia.com   password: Admin@MZR2026
---   Manager: email: hanzala@mzrmedia.com  password: Manager@MZR2026
+--   Admin:   email: zuhair@ScanShiftmedia.com   password: Admin@ScanShift2026
+--   Manager: email: hanzala@ScanShiftmedia.com  password: Manager@ScanShift2026
 --
 -- Step 2: After creating auth users, run this INSERT with their actual UUIDs
 -- Replace 'ADMIN_UUID_HERE' and 'MANAGER_UUID_HERE' with real UUIDs from auth.users
 -- ============================================================
 
 -- INSERT INTO public.users (id, email, full_name, role) VALUES
---   ('ADMIN_UUID_HERE', 'zuhair@mzrmedia.com', 'Zuhair Raza', 'admin'),
---   ('MANAGER_UUID_HERE', 'hanzala@mzrmedia.com', 'Hanzala Ajmeri', 'manager');
+--   ('ADMIN_UUID_HERE', 'zuhair@ScanShiftmedia.com', 'Zuhair Raza', 'admin'),
+--   ('MANAGER_UUID_HERE', 'hanzala@ScanShiftmedia.com', 'Hanzala Ajmeri', 'manager');
 
 -- ============================================================
 -- SAMPLE EMPLOYEES (optional - uncomment to add test data)
 -- ============================================================
 
 -- INSERT INTO public.employees (name, email, department, position, start_time, end_time) VALUES
---   ('Ali Hassan', 'ali@mzrmedia.com', 'Design', 'UI Designer', '09:00', '18:00'),
---   ('Sara Ahmed', 'sara@mzrmedia.com', 'Marketing', 'Content Writer', '09:00', '18:00'),
---   ('Bilal Khan', 'bilal@mzrmedia.com', 'Engineering', 'Developer', '10:00', '19:00'),
---   ('Fatima Malik', 'fatima@mzrmedia.com', 'Operations', 'Project Manager', '09:00', '18:00');
+--   ('Ali Hassan', 'ali@ScanShiftmedia.com', 'Design', 'UI Designer', '09:00', '18:00'),
+--   ('Sara Ahmed', 'sara@ScanShiftmedia.com', 'Marketing', 'Content Writer', '09:00', '18:00'),
+--   ('Bilal Khan', 'bilal@ScanShiftmedia.com', 'Engineering', 'Developer', '10:00', '19:00'),
+--   ('Fatima Malik', 'fatima@ScanShiftmedia.com', 'Operations', 'Project Manager', '09:00', '18:00');
 
 -- ============================================================
 -- HELPFUL VIEWS

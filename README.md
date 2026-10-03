@@ -1,4 +1,4 @@
-# MZR Media — Attendance Portal
+# ScanShift — Attendance Portal
 
 A dark-themed, QR-based employee attendance management system built with **React + Vite + Supabase**.
 

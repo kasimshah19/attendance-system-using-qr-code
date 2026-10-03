@@ -66,8 +66,8 @@ export default function Layout({ children }) {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
-        <div className="sidebar-logo">
-          <img src={LOGO} alt="MZR Media" />
+        <div className="sidebar-logo" style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
+          ScanShift
         </div>
 
         <nav className="sidebar-nav">

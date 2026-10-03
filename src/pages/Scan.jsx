@@ -96,7 +96,7 @@ function LiveClock() {
 function NotFound() {
   return (
     <div className="scan-card">
-      <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+      <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
       <div className="scan-success-icon warning"><IconX size={32} /></div>
       <h2 className="scan-employee-name" style={{ color: 'var(--danger)' }}>Invalid QR Code</h2>
       <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginTop: 8 }}>
@@ -110,7 +110,7 @@ function NotFound() {
 function AlreadyDone({ employee, record }) {
   return (
     <div className="scan-card">
-      <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+      <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
       <div className="scan-success-icon check"><IconCheck size={32} /></div>
       <h2 className="scan-employee-name">{employee.name}</h2>
       <p style={{ color: 'var(--text-secondary)', fontSize: 14, margin: '8px 0 20px' }}>
@@ -136,7 +136,7 @@ function TooSoon({ employee, record }) {
   const minsLeft = CHECKOUT_LOCK_MINS - Math.floor((Date.now() - new Date(record.check_in_time)) / 60000)
   return (
     <div className="scan-card">
-      <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+      <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
       <div className="scan-success-icon check"><IconInfo size={32} /></div>
       <h2 className="scan-employee-name">{employee.name}</h2>
       <div className="scan-status-badge info" style={{ margin: '12px auto 16px' }}>
@@ -155,7 +155,7 @@ function TooSoon({ employee, record }) {
 function SuccessCheckIn({ employee, record, isLate }) {
   return (
     <div className="scan-card">
-      <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+      <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
       <motion.div
         className={`scan-success-icon ${isLate ? 'warning' : 'check'}`}
         initial={{ scale: 0.5, opacity: 0 }}
@@ -196,7 +196,7 @@ function SuccessCheckOut({ employee, record }) {
   const isEarly = record.check_out_status === 'early'
   return (
     <div className="scan-card">
-      <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+      <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
       <motion.div
         className={`scan-success-icon ${isEarly ? 'warning' : 'out'}`}
         initial={{ scale: 0.5, opacity: 0 }}
@@ -404,7 +404,7 @@ export default function Scan() {
       case 'loading':
         return (
           <div className="scan-card" style={{ padding: '60px 40px' }}>
-            <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+            <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
             <div className="spinner" style={{ margin: '24px auto 12px' }} />
             <p style={{ color: 'var(--text-secondary)', fontSize: 14 }}>Verifying QR code...</p>
           </div>
@@ -429,7 +429,7 @@ export default function Scan() {
       case 'checkin_on_time':
         return (
           <div className="scan-card">
-            <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+            <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
             <LiveClock />
             <h2 className="scan-employee-name">{employee.name}</h2>
             <div className="scan-status-badge on-time" style={{ margin: '12px auto 24px' }}>
@@ -459,7 +459,7 @@ export default function Scan() {
       case 'checkin_late':
         return (
           <div className="scan-card">
-            <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+            <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
             <LiveClock />
             <h2 className="scan-employee-name">{employee.name}</h2>
             <div className="scan-status-badge late" style={{ margin: '12px auto 20px' }}>
@@ -499,7 +499,7 @@ export default function Scan() {
       case 'checkout_free':
         return (
           <div className="scan-card">
-            <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+            <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
             <LiveClock />
             <h2 className="scan-employee-name">{employee.name}</h2>
             <div className="scan-status-badge info" style={{ margin: '12px auto 20px' }}>
@@ -531,7 +531,7 @@ export default function Scan() {
       case 'checkout_early':
         return (
           <div className="scan-card">
-            <div className="scan-logo"><img src={LOGO} alt="MZR Media" /></div>
+            <div className="scan-logo" style={{ fontSize: '28px', fontWeight: 'bold', color: 'white' }}>ScanShift</div>
             <LiveClock />
             <h2 className="scan-employee-name">{employee.name}</h2>
             <div className="scan-status-badge danger" style={{ margin: '12px auto 16px' }}>
@@ -592,7 +592,7 @@ export default function Scan() {
       </AnimatePresence>
 
       <p style={{ color: 'var(--text-muted)', fontSize: 12, marginTop: 24, zIndex: 1, position: 'relative' }}>
-        MZR Media · Attendance Portal
+        ScanShift · Attendance Portal
       </p>
     </div>
   )

@@ -1,4 +1,4 @@
-# MZR Media Attendance Portal — Supabase Setup Guide
+# ScanShift Attendance Portal — Supabase Setup Guide
 
 Follow these steps in ORDER. Do not skip any step.
 
@@ -8,7 +8,7 @@ Follow these steps in ORDER. Do not skip any step.
 
 1. Go to https://supabase.com and sign in
 2. Click **New Project**
-3. Name it: `mzr-attendance`
+3. Name it: `scanshift-attendance`
 4. Set a strong database password (save it)
 5. Choose a region closest to Pakistan (e.g., Singapore)
 6. Wait for the project to finish provisioning (~2 minutes)
@@ -21,7 +21,7 @@ Go to **SQL Editor** in your Supabase dashboard and run the following SQL **in o
 
 ```sql
 -- ════════════════════════════════════════════════════
---  MZR MEDIA ATTENDANCE — DATABASE SCHEMA
+--  ScanShift ATTENDANCE — DATABASE SCHEMA
 --  Start Date: May 2026
 -- ════════════════════════════════════════════════════
 
@@ -208,12 +208,12 @@ CREATE TRIGGER on_auth_user_created
 2. Click **Add User → Create new user**
 
 **Create Admin (Zuhair Raza):**
-- Email: `zuhair@mzrmedia.com` (or any email you prefer)
+- Email: `zuhair@ScanShiftmedia.com` (or any email you prefer)
 - Password: Set a strong password
 - Click **Create User**
 
 **Create Manager (Hanzala Ajmeri):**
-- Email: `hanzala@mzrmedia.com` (or any email you prefer)
+- Email: `hanzala@ScanShiftmedia.com` (or any email you prefer)
 - Password: Set a strong password
 - Click **Create User**
 
@@ -229,14 +229,14 @@ CREATE TRIGGER on_auth_user_created
 UPDATE public.profiles
 SET name = 'Zuhair Raza', role = 'admin'
 WHERE id = (
-  SELECT id FROM auth.users WHERE email = 'zuhair@mzrmedia.com' LIMIT 1
+  SELECT id FROM auth.users WHERE email = 'zuhair@ScanShiftmedia.com' LIMIT 1
 );
 
 -- Set Hanzala Ajmeri as MANAGER
 UPDATE public.profiles
 SET name = 'Hanzala Ajmeri', role = 'manager'
 WHERE id = (
-  SELECT id FROM auth.users WHERE email = 'hanzala@mzrmedia.com' LIMIT 1
+  SELECT id FROM auth.users WHERE email = 'hanzala@ScanShiftmedia.com' LIMIT 1
 );
 
 -- Verify (should return 2 rows)
@@ -279,14 +279,14 @@ VITE_APP_URL=http://localhost:5173
 ```
 
 > ⚠ `VITE_APP_URL` is used to generate QR code URLs.
-> In production, set it to your actual domain (e.g., `https://attendance.mzrmedia.com`).
+> In production, set it to your actual domain (e.g., `https://attendance.ScanShiftmedia.com`).
 
 ---
 
 ## STEP 8 — Install & Run
 
 ```bash
-cd mzr-attendance
+cd scanshift-attendance
 npm install
 npm run dev
 ```
